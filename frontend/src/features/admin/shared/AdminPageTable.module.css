@@ -1,0 +1,141 @@
+/* Table Card */
+.tableCard {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.tableHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tableHeader h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.usersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.usersTable th,
+.usersTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.usersTable th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.usersTable tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.userId {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.roleSelect {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  background: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.roleSelect:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.adminRole {
+  background: rgba(255, 193, 7, 0.1);
+  color: #856404;
+  border-color: #ffeaa7;
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.activeStatus {
+  background: rgba(40, 167, 69, 0.1);
+  color: #155724;
+}
+
+.inactiveStatus {
+  background: rgba(220, 53, 69, 0.1);
+  color: #721c24;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.actionButton {
+  padding: 0.375rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.actionButton:hover {
+  background: #e9ecef;
+}
+
+.suspendButton:hover {
+  background: rgba(220, 53, 69, 0.1);
+  color: #721c24;
+}
+
+.activateButton:hover {
+  background: rgba(40, 167, 69, 0.1);
+  color: #155724;
+}

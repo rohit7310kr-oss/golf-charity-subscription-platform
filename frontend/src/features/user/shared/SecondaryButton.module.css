@@ -1,0 +1,28 @@
+.simpleVariant {
+  color: #666;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.simpleVariant:hover {
+  background: #e0e0e0;
+}
+
+.secondaryButton {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
