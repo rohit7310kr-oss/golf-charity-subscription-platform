@@ -8,7 +8,7 @@ const scoreSchema = new mongoose.Schema({
     type: String,
     required: [true, "course name is required"],
   },
-  whether: {
+  weather: {
     type: String,
     required: false,
   },

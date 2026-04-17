@@ -2,56 +2,12 @@ import React, { useState } from "react";
 import styles from "./MyScores.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
+import useFetchScores from "./useFetchScores";
 
 const MyScores = () => {
   // Mock data - in real app, this would come from API
-  const [scores] = useState([
-    {
-      id: 1,
-      date: "2024-04-10",
-      course: "Pine Valley Golf Club",
-      score: 76,
-      par: 72,
-      weather: "Sunny",
-      notes: "Great day on the course!",
-    },
-    {
-      id: 2,
-      date: "2024-04-08",
-      course: "Augusta National",
-      score: 82,
-      par: 72,
-      weather: "Windy",
-      notes: "Challenging conditions",
-    },
-    {
-      id: 3,
-      date: "2024-04-05",
-      course: "Pebble Beach",
-      score: 79,
-      par: 72,
-      weather: "Foggy",
-      notes: "Beautiful scenery",
-    },
-    {
-      id: 4,
-      date: "2024-04-03",
-      course: "St. Andrews",
-      score: 85,
-      par: 72,
-      weather: "Rainy",
-      notes: "Historic course",
-    },
-    {
-      id: 5,
-      date: "2024-03-30",
-      course: "Torrey Pines",
-      score: 74,
-      par: 72,
-      weather: "Clear",
-      notes: "Personal best!",
-    },
-  ]);
+
+  const { scores } = useFetchScores();
 
   const [sortBy, setSortBy] = useState("date");
   const [sortOrder, setSortOrder] = useState("desc");

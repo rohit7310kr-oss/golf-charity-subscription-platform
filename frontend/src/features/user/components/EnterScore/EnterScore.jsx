@@ -22,6 +22,7 @@ const EnterScore = () => {
       courseName: formData.courseName,
       date: formData.date,
       notes: formData.notes,
+      weather: formData.weather,
       totalScore: calculateTotal(),
     };
     const response = await createScoreAPI(requestData);
@@ -56,14 +57,14 @@ const EnterScore = () => {
               />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="whether">whether</label>
+              <label htmlFor="weather">weather</label>
               <input
                 type="text"
-                id="whether"
-                name="whether"
-                value={formData.whether}
+                id="weather"
+                name="weather"
+                value={formData.weather}
                 onChange={handleInputChange}
-                placeholder="How was the whether"
+                placeholder="How was the weather"
                 required
               />
             </div>

@@ -6,7 +6,7 @@ const useScoreFormHandler = function (handleRequest) {
     date: new Date().toISOString().split("T")[0],
     scores: Array(18).fill(""),
     notes: "",
-    whether: "",
+    weather: "",
   });
 
   function resetForm() {
@@ -15,7 +15,7 @@ const useScoreFormHandler = function (handleRequest) {
       date: new Date().toISOString().split("T")[0],
       scores: Array(18).fill(""),
       notes: "",
-      whether: "",
+      weather: "",
     });
   }
 
