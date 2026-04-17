@@ -1,46 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./EnterScore.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
+import useScoreFormHandler from "./useScoreFormHandler";
+import { createScoreAPI } from "../../services/scoreAPI";
+import { toast } from "react-toastify";
 
 const EnterScore = () => {
-  const [formData, setFormData] = useState({
-    courseName: "",
-    date: new Date().toISOString().split("T")[0],
-    scores: Array(18).fill(""),
-    notes: "",
-  });
+  const {
+    formData,
+    handleInputChange,
+    handleSubmit,
+    calculateTotal,
+    handleScoreChange,
+    resetForm,
+    handleFormCancle,
+  } = useScoreFormHandler(handleRequest);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  async function handleRequest(formData) {
+    const requestData = {
+      courseName: formData.courseName,
+      date: formData.date,
+      notes: formData.notes,
+      totalScore: calculateTotal(),
+    };
+    const response = await createScoreAPI(requestData);
 
-  const handleScoreChange = (holeIndex, value) => {
-    const newScores = [...formData.scores];
-    newScores[holeIndex] = value;
-    setFormData((prev) => ({
-      ...prev,
-      scores: newScores,
-    }));
-  };
-
-  const calculateTotal = () => {
-    return formData.scores.reduce((total, score) => {
-      const num = parseInt(score) || 0;
-      return total + num;
-    }, 0);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: Submit to API
-    console.log("Submitting score:", formData);
-    alert("Score submitted successfully!");
-  };
+    if (response.data.status === "success") {
+      resetForm();
+      toast.success("Score is successfully registered");
+    }
+  }
 
   return (
     <div className={styles.enterScore}>
@@ -62,6 +52,18 @@ const EnterScore = () => {
                 value={formData.courseName}
                 onChange={handleInputChange}
                 placeholder="Enter course name"
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="whether">whether</label>
+              <input
+                type="text"
+                id="whether"
+                name="whether"
+                value={formData.whether}
+                onChange={handleInputChange}
+                placeholder="How was the whether"
                 required
               />
             </div>
@@ -113,8 +115,10 @@ const EnterScore = () => {
         </div>
 
         <div className={styles.formActions}>
-          <SecondaryButton variant="simple">Cancle</SecondaryButton>
-          <SecondaryButton>Submit Score</SecondaryButton>
+          <SecondaryButton variant="simple" onClick={handleFormCancle}>
+            Cancle
+          </SecondaryButton>
+          <SecondaryButton onClick={handleSubmit}>Submit Score</SecondaryButton>
         </div>
       </form>
     </div>

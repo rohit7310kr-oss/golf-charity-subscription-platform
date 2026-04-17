@@ -6,5 +6,7 @@ module.exports = function (err, req, res, next) {
   }
 
   // fallback
-  res.status(500).json({ status: "fail", message: "internal server error" });
+  res
+    .status(500)
+    .json({ status: "fail", message: "internal server error", err: err });
 };

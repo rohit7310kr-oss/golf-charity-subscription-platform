@@ -2,12 +2,10 @@
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const { nanoid: nanoId } = require("nanoid");
+const { publicIdValidator } = require("../utils/validator");
 
 const userSchema = new mongoose.Schema({
-  publicId: {
-    type: String,
-    default: () => nanoId(8),
-  },
+  publicId: publicIdValidator,
   fullName: {
     type: String,
     required: [true, "name is required"],
