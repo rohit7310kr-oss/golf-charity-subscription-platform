@@ -14,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/v1/user", require("./routes/user.route"));
-app.use("/api/v1/game", require("./routes/score.route"));
+app.use("/api/v1/game/score", require("./routes/score.route"));
+app.use("/api/v1/game/summary", require("./routes/summary.route"));
 
 app.use(errorHandler);
 

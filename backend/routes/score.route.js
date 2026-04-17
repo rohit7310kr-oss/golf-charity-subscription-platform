@@ -6,6 +6,6 @@ const {
 
 const router = express.Router();
 
-router.route("/score").post(createScore).get(getAllScores);
+router.route("/").post(createScore).get(getAllScores);
 
 module.exports = router;

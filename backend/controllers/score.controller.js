@@ -14,10 +14,14 @@ exports.createScore = catchAsyncHandler(async function (req, res) {
 
 exports.getAllScores = catchAsyncHandler(async function (req, res) {
   const scores = await Score.find();
+  const data = scores.map((el) => {
+    const { _id, ...rest } = el.toObject();
+    return rest;
+  });
 
   res.status(200).json({
     status: "success",
-    data: scores,
+    data,
     message: "successfully fetched scores",
   });
 });

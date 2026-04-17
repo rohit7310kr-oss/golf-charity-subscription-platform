@@ -3,39 +3,13 @@ import styles from "./MyScores.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
 import useFetchScores from "./useFetchScores";
+import useSortScores from "./useSortScores";
 
 const MyScores = () => {
   // Mock data - in real app, this would come from API
 
   const { scores } = useFetchScores();
-
-  const [sortBy, setSortBy] = useState("date");
-  const [sortOrder, setSortOrder] = useState("desc");
-
-  const sortedScores = [...scores].sort((a, b) => {
-    let aVal = a[sortBy];
-    let bVal = b[sortBy];
-
-    if (sortBy === "date") {
-      aVal = new Date(aVal);
-      bVal = new Date(bVal);
-    }
-
-    if (sortOrder === "asc") {
-      return aVal > bVal ? 1 : -1;
-    } else {
-      return aVal < bVal ? 1 : -1;
-    }
-  });
-
-  const handleSort = (field) => {
-    if (sortBy === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(field);
-      setSortOrder("desc");
-    }
-  };
+  const { sortOrder, sortBy, handleSort, sortedScores } = useSortScores(scores);
 
   const getScoreClass = (score, par) => {
     const diff = score - par;

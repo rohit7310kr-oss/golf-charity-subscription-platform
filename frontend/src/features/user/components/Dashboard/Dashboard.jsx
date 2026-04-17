@@ -2,21 +2,10 @@ import React from "react";
 import styles from "./Dashboard.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import PrimaryButton from "../../shared/PrimaryButton";
+import useFetchSummary from "./useFetchSummary";
 
 const Dashboard = () => {
-  // Mock data - in real app, this would come from API
-  const stats = {
-    totalRounds: 24,
-    averageScore: 78,
-    bestScore: 72,
-    handicap: 12.5,
-  };
-
-  const recentRounds = [
-    { date: "2024-04-10", course: "Pine Valley", score: 76, par: 72 },
-    { date: "2024-04-08", course: "Augusta National", score: 82, par: 72 },
-    { date: "2024-04-05", course: "Pebble Beach", score: 79, par: 72 },
-  ];
+  const { stats, recentRounds } = useFetchSummary();
 
   return (
     <div className={styles.dashboard}>

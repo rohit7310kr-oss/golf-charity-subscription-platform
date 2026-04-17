@@ -19,7 +19,7 @@ const RegisteredUserLayout = ({ children }) => {
       id: "dashboard",
       label: "Dashboard",
       icon: "🏌️‍♂️",
-      path: "dashboard",
+      path: "",
     },
     {
       id: "enter-score",

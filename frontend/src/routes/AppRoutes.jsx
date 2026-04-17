@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         path: "user",
         element: <UserLayoutPage />,
         children: [
-          { path: "dashboard", index: true, element: <UserDashboardPage /> },
+          { index: true, element: <UserDashboardPage /> },
           { path: "enter-score", element: <UserEnterScorePage /> },
           { path: "my-score", element: <UserMyScorePage /> },
           { path: "profile", element: <UserProfilePage /> },
