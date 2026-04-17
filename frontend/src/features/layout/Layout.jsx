@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 
 const Layout = ({ menuItems, config, children }) => {
+  const user = config.user;
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -74,8 +75,8 @@ const Layout = ({ menuItems, config, children }) => {
             <div className={styles.userAvatar}>👤</div>
             {!sidebarCollapsed && (
               <div className={styles.userDetails}>
-                <div className={styles.userName}>Admin User</div>
-                <div className={styles.userRole}>Administrator</div>
+                <div className={styles.userName}>{user?.fullName}</div>
+                <div className={styles.userRole}>{user?.role}</div>
               </div>
             )}
           </div>
@@ -110,7 +111,7 @@ const Layout = ({ menuItems, config, children }) => {
             <div className={styles.userMenu}>
               <button className={styles.userMenuButton}>
                 <span className={styles.userMenuAvatar}>👤</span>
-                <span className={styles.userMenuName}>Admin</span>
+                <span className={styles.userMenuName}>{user?.fullName}</span>
                 <span className={styles.userMenuArrow}>▼</span>
               </button>
             </div>

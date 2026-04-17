@@ -1,7 +1,10 @@
 import React from "react";
 import Layout from "../../layout/Layout";
+import { useUser } from "../../context/userContext";
 
 const RegisteredUserLayout = ({ children }) => {
+  const { user } = useUser();
+
   const stylesObj = {
     sidebar: {
       background: "linear-gradient(180deg, #2e7d32 0%, #388e3c 100%)",
@@ -16,30 +19,33 @@ const RegisteredUserLayout = ({ children }) => {
       id: "dashboard",
       label: "Dashboard",
       icon: "🏌️‍♂️",
-      path: "/user/dashboard",
+      path: "dashboard",
     },
     {
       id: "enter-score",
       label: "Enter Score",
       icon: "📝",
-      path: "/user/enter-score",
+      path: "enter-score",
     },
     {
       id: "my-scores",
       label: "My Scores",
       icon: "📊",
-      path: "/user/my-score",
+      path: "my-score",
     },
     {
       id: "profile",
       label: "Profile",
       icon: "👤",
-      path: "/user/profile",
+      path: "profile",
     },
   ];
 
   return (
-    <Layout menuItems={menuItems} config={{ title: "user panel", stylesObj }}>
+    <Layout
+      menuItems={menuItems}
+      config={{ title: "user panel", stylesObj, user }}
+    >
       {children}
     </Layout>
   );
