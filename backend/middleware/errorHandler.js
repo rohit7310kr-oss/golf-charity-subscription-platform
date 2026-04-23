@@ -5,8 +5,10 @@ module.exports = function (err, req, res, next) {
     return res.status(400).json({ status: "fail", message: errorMessages });
   }
 
+  console.log(err.message);
+
   // fallback
   res
-    .status(500)
-    .json({ status: "fail", message: "internal server error", err: err });
+    .status(400)
+    .json({ status: "fail", message: "internal server error", err });
 };

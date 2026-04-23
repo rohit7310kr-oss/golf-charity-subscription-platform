@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
       "Please provide a valid email address",
     ],
   },
+  phone: {
+    type: Number,
+    required: [true, "required"],
+  },
   role: {
     type: String,
     enum: ["user", "admin"],

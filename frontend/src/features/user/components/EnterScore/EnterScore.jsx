@@ -3,7 +3,7 @@ import styles from "./EnterScore.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
 import useScoreFormHandler from "./useScoreFormHandler";
-import { createScoreAPI } from "../../services/scoreAPI";
+import { createScoreAPI } from "../../services/userAPI";
 import { toast } from "react-toastify";
 
 const EnterScore = () => {

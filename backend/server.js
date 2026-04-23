@@ -17,6 +17,8 @@ app.use("/api/v1/user", require("./routes/user.route"));
 app.use("/api/v1/game/score", require("./routes/score.route"));
 app.use("/api/v1/game/summary", require("./routes/summary.route"));
 
+app.use("/api/v1/profile", require("./routes/profile.route"));
+
 app.use(errorHandler);
 
 app.get("/", (req, res) => {

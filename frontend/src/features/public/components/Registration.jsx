@@ -11,9 +11,8 @@ const Registration = () => {
     useFormHandler(onSuccess);
 
   function onSuccess() {
-    navigate("/user");
+    navigate("/app/user");
   }
-  console.log(fieldErrors);
 
   return (
     <section id="register" className={styles.section}>
@@ -37,6 +36,15 @@ const Registration = () => {
             onChange={handleChange}
             placeholder="Enter your email address"
             error={fieldErrors.email}
+          />
+          <FormInput
+            label="Phone"
+            type="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Enter your phone"
+            error={fieldErrors.phone}
           />
           <FormInput
             label="Password"

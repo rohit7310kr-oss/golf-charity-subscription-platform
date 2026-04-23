@@ -1,3 +1,3 @@
 import API from "../../../services/axios";
 
-export const createUserAPI = (data) => API.post("/api/v1/user", data);
+export const createUserAPI = (data) => API.post("/user", data);

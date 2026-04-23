@@ -5,6 +5,7 @@ const useFormHandler = function (onSuccess) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -14,6 +15,7 @@ const useFormHandler = function (onSuccess) {
   const [fieldErrors, setFieldErrors] = useState({
     fullName: "",
     email: "",
+    phone: "",
     password: "",
     confirmPaa: "",
   });
@@ -27,6 +29,7 @@ const useFormHandler = function (onSuccess) {
       setFieldErrors({
         fullName: "",
         email: "",
+        phone: "",
         password: "",
         confirmPassword: "",
       });
@@ -53,6 +56,7 @@ const useFormHandler = function (onSuccess) {
         fullName: "",
         email: "",
         password: "",
+        phone: "",
         confirmPassword: "",
       });
       onSuccess();
