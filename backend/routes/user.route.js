@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.route("/").get(getAllUser);
 
-router.route("/:id").get(getUser);
+router.route("/:id").get(getUser).patch(updateUser);
 
 module.exports = router;

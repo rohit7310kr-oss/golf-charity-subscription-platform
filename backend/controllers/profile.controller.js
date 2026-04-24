@@ -19,7 +19,7 @@ exports.getProfile = catchAsyncHandler(async function (req, res) {
   req.params.id = await getIdFromPublicId(User, req.params.id);
   const profile = await Profile.findOne({ user: req.params.id });
 
-  if (!profile) res.status(200).json({ status: "success", data: null });
+  if (!profile) return res.status(200).json({ status: "success", data: null });
 
   const { _id, user, ...data } = profile.toObject();
 
@@ -43,7 +43,9 @@ exports.updateProfile = catchAsyncHandler(async function (req, res) {
   );
 
   if (!profile)
-    res.status(400).json({ status: "fail", message: "Profile not found" });
+    return res
+      .status(400)
+      .json({ status: "fail", message: "Profile not found" });
 
   const { _id, ...data } = profile.toObject();
 

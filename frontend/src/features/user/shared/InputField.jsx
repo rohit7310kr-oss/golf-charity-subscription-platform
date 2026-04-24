@@ -10,6 +10,7 @@ const InputField = ({
   htmlId,
   name,
   type,
+  error,
 }) => {
   if (
     type === "text" ||
@@ -19,6 +20,7 @@ const InputField = ({
   )
     return (
       <div className={styles.formGroup}>
+        <span>{error}</span>
         <label htmlFor={htmlId}>{label}</label>
         <input
           type={type}
@@ -34,6 +36,7 @@ const InputField = ({
   if (type === "select")
     return (
       <div className={styles.formGroup}>
+        <span>{error}</span>
         <label htmlFor={htmlId}>{label}</label>
         <select
           id={htmlId}

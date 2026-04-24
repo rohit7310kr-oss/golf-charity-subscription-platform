@@ -12,6 +12,6 @@ export const createProfileAPI = (data) => API.post(`/profile`, data);
 
 export const updateProfileAPI = (id, data) => API.patch(`/profile/${id}`, data);
 
-export const updateUserAPI = (id, data) => API.patch(`/user/${id}`, data);
-
 export const getUserAPI = (id) => API.get(`/user/${id}`);
+
+export const updateUserAPI = (id, data) => API.patch(`/user/${id}`, data);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Layout.module.css";
 import Loader from "../shared/Loader";
+import { ToastContainer } from "react-toastify";
 
 const Layout = ({
   menuItems,
@@ -35,6 +36,7 @@ const Layout = ({
 
   return (
     <>
+      <ToastContainer />
       {loading.status ? (
         <Loader message={loading.message} />
       ) : (

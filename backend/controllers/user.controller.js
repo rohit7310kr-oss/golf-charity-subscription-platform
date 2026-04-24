@@ -18,3 +18,17 @@ exports.getUser = catchAsyncHandler(async function (req, res) {
 
   res.status(200).json({ status: "success", data });
 });
+
+exports.updateUser = catchAsyncHandler(async function (req, res) {
+  const user = await User.findOneAndUpdate(
+    { publicId: req.params.id },
+    req.body,
+  );
+
+  if (!user)
+    return res.status(400).json({ status: "fail", message: "User not found" });
+
+  const { _id, ...data } = user.toObject();
+
+  res.status(200).json({ status: "success", data });
+});
