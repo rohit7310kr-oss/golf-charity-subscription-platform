@@ -34,6 +34,8 @@ const Layout = ({
     navigate("/");
   };
 
+  const handleLogout = () => {};
+
   return (
     <>
       <ToastContainer />
@@ -129,6 +131,13 @@ const Layout = ({
                     <span className={styles.userMenuArrow}>▼</span>
                   </button>
                 </div>
+                <button
+                  className={styles.headerButton}
+                  onClick={handleLogout}
+                  title="Back to Public Site"
+                >
+                  Logout
+                </button>
               </div>
             </header>
 
