@@ -1,8 +1,17 @@
 const catchAsyncHandler = require("../middleware/catchAsyncHandler");
 const Score = require("../models/score.model");
+const User = require("../models/user.model");
+const { getIdFromPublicId } = require("../utils/getIdFromPublicId");
 
-exports.getStats = catchAsyncHandler(async function (req, res) {
-  const scores = await Score.find();
+exports.getUserStats = catchAsyncHandler(async function (req, res) {
+  const userId = await getIdFromPublicId(User, req.params.id);
+  const scores = await Score.find({ user: userId });
+
+  if (!scores.length)
+    return res
+      .status(200)
+      .json({ status: "success", data: null, message: "No scores found" });
+
   const numRounds = scores.length;
   const averageScore = Math.round(
     scores.reduce((acc, cur) => cur.totalScore + acc, 0) / numRounds,

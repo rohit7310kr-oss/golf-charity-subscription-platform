@@ -4,9 +4,11 @@ import UserHeaderSection from "../../shared/UserHeaderSection";
 import PrimaryButton from "../../shared/PrimaryButton";
 import useFetchSummary from "./useFetchSummary";
 import Loader from "../../../shared/Loader";
+import { useNavigate } from "react-router";
 
 const Dashboard = () => {
   const { loading, stats, recentRounds } = useFetchSummary();
+  const navigate = useNavigate();
 
   return (
     <div className={styles.dashboard}>
@@ -50,41 +52,51 @@ const Dashboard = () => {
           </div>
 
           <div className={styles.recentRounds}>
-            <h3>Recent Rounds</h3>
-            <div className={styles.roundsTable}>
-              <div className={styles.tableHeader}>
-                <span>Date</span>
-                <span>Course</span>
-                <span>Score</span>
-                <span>Over Par</span>
-              </div>
-              {recentRounds.map((round, index) => (
-                <div key={index} className={styles.tableRow}>
-                  <span>{round.date}</span>
-                  <span>{round.course}</span>
-                  <span>{round.score}</span>
-                  <span
-                    className={
-                      round.score - round.par > 0
-                        ? styles.overPar
-                        : styles.underPar
-                    }
-                  >
-                    {round.score - round.par > 0 ? "+" : ""}
-                    {round.score - round.par}
-                  </span>
+            <h3>
+              {!recentRounds.length
+                ? "You have played 0 games, your recent score will be visible here"
+                : "Recent Rounds"}
+            </h3>
+            {recentRounds.length && (
+              <div className={styles.roundsTable}>
+                <div className={styles.tableHeader}>
+                  <span>Date</span>
+                  <span>Course</span>
+                  <span>Score</span>
+                  <span>Over Par</span>
                 </div>
-              ))}
-            </div>
+                {recentRounds.map((round, index) => (
+                  <div key={index} className={styles.tableRow}>
+                    <span>{round.date}</span>
+                    <span>{round.course}</span>
+                    <span>{round.score}</span>
+                    <span
+                      className={
+                        round.score - round.par > 0
+                          ? styles.overPar
+                          : styles.underPar
+                      }
+                    >
+                      {round.score - round.par > 0 ? "+" : ""}
+                      {round.score - round.par}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles.quickActions}>
             <h3>Quick Actions</h3>
             <div className={styles.actionsGrid}>
-              <PrimaryButton>📝 Enter New Score</PrimaryButton>
-              <PrimaryButton>📊 View All Scores</PrimaryButton>
-              <PrimaryButton>🏌️‍♂️ Find Courses</PrimaryButton>
-              <PrimaryButton>👥 Join Tournament</PrimaryButton>
+              <PrimaryButton onClick={() => navigate("enter-score")}>
+                📝 Enter New Score
+              </PrimaryButton>
+              <PrimaryButton onClick={() => navigate("my-score")}>
+                📊 View All Scores
+              </PrimaryButton>
+              {/* <PrimaryButton>🏌️‍♂️ Find Courses</PrimaryButton> */}
+              {/* <PrimaryButton>👥 Join Tournament</PrimaryButton> */}
             </div>
           </div>
         </>

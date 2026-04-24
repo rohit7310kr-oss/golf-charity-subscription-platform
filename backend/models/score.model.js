@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 
 const scoreSchema = new mongoose.Schema({
   publicId: publicIdValidator,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   courseName: {
     type: String,
     required: [true, "course name is required"],

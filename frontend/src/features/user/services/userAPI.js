@@ -2,9 +2,9 @@ import API from "../../../services/axios";
 
 export const createScoreAPI = (data) => API.post("/game/score", data);
 
-export const fetchScoresAPI = () => API.get("/game/score");
+export const fetchScoresAPI = (userId) => API.get(`/game/score/${userId}`);
 
-export const fetchSummeryAPI = () => API.get("/game/summary");
+export const fetchSummeryAPI = (userId) => API.get(`/game/summary/${userId}`);
 
 export const fetchProfileAPI = (userId) => API.get(`/profile/${userId}`);
 

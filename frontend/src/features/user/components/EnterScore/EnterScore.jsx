@@ -5,8 +5,10 @@ import SecondaryButton from "../../shared/SecondaryButtton";
 import useScoreFormHandler from "./useScoreFormHandler";
 import { createScoreAPI } from "../../services/userAPI";
 import { toast } from "react-toastify";
+import { useUser } from "../../../context/userContext";
 
 const EnterScore = () => {
+  const { user } = useUser();
   const {
     formData,
     handleInputChange,
@@ -19,6 +21,7 @@ const EnterScore = () => {
 
   async function handleRequest(formData) {
     const requestData = {
+      user: user.publicId,
       courseName: formData.courseName,
       date: formData.date,
       notes: formData.notes,

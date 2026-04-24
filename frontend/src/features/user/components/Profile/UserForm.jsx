@@ -45,12 +45,12 @@ const UserForm = function ({
 
       const res = await updateUserAPI(savedUser?.publicId, user);
       console.log(res);
-      if (res.data.status === "success")
+      if (res.data.status === "success") {
         toast.success("User edited successfull");
-      onSuccess();
+        onSuccess();
+      }
     } catch (err) {
       toast.error(err.message);
-    } finally {
     }
   };
 

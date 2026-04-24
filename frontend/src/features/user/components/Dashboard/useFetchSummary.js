@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { fetchSummeryAPI } from "../../services/userAPI";
+import { useUser } from "../../../context/userContext";
 
 const useFetchSummary = function () {
-  const [stats, setStats] = useState({});
+  const [stats, setStats] = useState({
+    totalRounds: 0,
+    averageScore: 0,
+    bestScore: 0,
+    handicap: 0,
+  });
   const [recentRounds, setRecentRounds] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const { user } = useUser();
 
   useEffect(() => {
     handleRequest();
@@ -13,7 +21,8 @@ const useFetchSummary = function () {
   const handleRequest = async function () {
     try {
       setLoading(true);
-      const response = await fetchSummeryAPI();
+      if (!user) throw new Error("Please login");
+      const response = await fetchSummeryAPI(user?.publicId);
       const data = response.data.data;
 
       setStats({

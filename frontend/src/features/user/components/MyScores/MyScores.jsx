@@ -6,11 +6,17 @@ import useSortScores from "./useSortScores";
 import useFetchData from "./../../hook/useFetchData";
 import { fetchScoresAPI } from "../../services/userAPI";
 import Loader from "../../../shared/Loader";
+import { useUser } from "../../../context/userContext";
+import { useNavigate } from "react-router";
 
 const MyScores = () => {
+  const { user } = useUser();
   // Mock data - in real app, this would come from API
+  const navigate = useNavigate();
 
-  const { loading, data: scoresData } = useFetchData(fetchScoresAPI);
+  const { loading, data: scoresData } = useFetchData(() =>
+    fetchScoresAPI(user.publicId),
+  );
 
   const scores = !scoresData.data
     ? []
@@ -121,7 +127,9 @@ const MyScores = () => {
 
           <div className={styles.actions}>
             <SecondaryButton variant="blue">📊 Export Scores</SecondaryButton>
-            <SecondaryButton>➕ Enter New Score</SecondaryButton>
+            <SecondaryButton onClick={() => navigate("/app/user/enter-score")}>
+              ➕ Enter New Score
+            </SecondaryButton>
           </div>
         </>
       )}
