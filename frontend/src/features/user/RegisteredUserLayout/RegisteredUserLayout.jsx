@@ -3,7 +3,7 @@ import Layout from "../../layout/Layout";
 import { useUser } from "../../context/userContext";
 
 const RegisteredUserLayout = ({ children }) => {
-  const { user } = useUser();
+  const { user, loading: userLoading } = useUser();
 
   const stylesObj = {
     sidebar: {
@@ -45,6 +45,10 @@ const RegisteredUserLayout = ({ children }) => {
     <Layout
       menuItems={menuItems}
       config={{ title: "user panel", stylesObj, user }}
+      loading={{
+        message: "waiting for the user data, please wait...",
+        status: userLoading,
+      }}
     >
       {children}
     </Layout>

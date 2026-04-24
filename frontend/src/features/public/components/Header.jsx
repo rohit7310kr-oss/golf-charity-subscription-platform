@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const handleNavClick = (path) => {
@@ -20,6 +21,7 @@ const Header = () => {
         <a onClick={() => handleNavClick("#plans")}>Plans</a>
         <a onClick={() => handleNavClick("#register")}>Register</a>
         <a onClick={() => handleNavClick("#pay")}>Pay</a>
+        <Link to="login">Login</Link>
       </nav>
     </header>
   );

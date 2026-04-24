@@ -11,9 +11,8 @@ export const UserProvider = function ({ children }) {
     try {
       setLoading(true);
       const savedUser = await JSON.parse(localStorage.getItem("user"));
-      console.log(savedUser);
-      const user = await getUserAPI(savedUser.publicId);
-      if (user) setUser(user);
+      const response = await getUserAPI(savedUser.publicId);
+      if (response) setUser(response.data.data);
     } catch (err) {
       console.dir(err);
     } finally {
@@ -26,7 +25,9 @@ export const UserProvider = function ({ children }) {
   }, []);
 
   return (
-    <userContext.Provider value={{ user }}>{children}</userContext.Provider>
+    <userContext.Provider value={{ user, loading }}>
+      {children}
+    </userContext.Provider>
   );
 };
 

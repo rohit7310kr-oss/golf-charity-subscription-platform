@@ -2,6 +2,14 @@ import { useState } from "react";
 import { createUserAPI } from "../services/users";
 
 const useFormHandler = function (onSuccess) {
+  const formInputs = {
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  };
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -17,8 +25,21 @@ const useFormHandler = function (onSuccess) {
     email: "",
     phone: "",
     password: "",
-    confirmPaa: "",
+    confirmPassword: "",
   });
+
+  const [error, setError] = useState(null);
+
+  const retry = function () {
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setError(null);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,7 +54,6 @@ const useFormHandler = function (onSuccess) {
         password: "",
         confirmPassword: "",
       });
-      setIsLoading(true);
       if (formData.password !== formData.confirmPassword)
         return setFieldErrors((errors) => {
           return {
@@ -46,6 +66,8 @@ const useFormHandler = function (onSuccess) {
         return setFieldErrors((errors) => {
           return { ...errors, fullName: "Please write correct name" };
         });
+
+      setIsLoading(true);
 
       const response = await createUserAPI(formData);
 
@@ -61,7 +83,7 @@ const useFormHandler = function (onSuccess) {
       });
       onSuccess();
     } catch (err) {
-      console.dir(err);
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +94,16 @@ const useFormHandler = function (onSuccess) {
     createUserHandler(formData);
   };
 
-  return { formData, setFormData, handleChange, handleSubmit, fieldErrors };
+  return {
+    isLoading,
+    formData,
+    setFormData,
+    handleChange,
+    handleSubmit,
+    fieldErrors,
+    error,
+    retry,
+  };
 };
 
 export default useFormHandler;

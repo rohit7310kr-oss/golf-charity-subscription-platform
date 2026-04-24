@@ -3,7 +3,7 @@ import styles from "./Dashboard.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import PrimaryButton from "../../shared/PrimaryButton";
 import useFetchSummary from "./useFetchSummary";
-import Loader from "../../../public/shared/Loader";
+import Loader from "../../../shared/Loader";
 
 const Dashboard = () => {
   const { loading, stats, recentRounds } = useFetchSummary();

@@ -5,7 +5,7 @@ import SecondaryButton from "../../shared/SecondaryButtton";
 import useSortScores from "./useSortScores";
 import useFetchData from "./../../hook/useFetchData";
 import { fetchScoresAPI } from "../../services/userAPI";
-import Loader from "../../../public/shared/Loader";
+import Loader from "../../../shared/Loader";
 
 const MyScores = () => {
   // Mock data - in real app, this would come from API

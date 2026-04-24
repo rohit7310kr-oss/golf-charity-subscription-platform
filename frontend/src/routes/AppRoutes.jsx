@@ -13,6 +13,7 @@ import UserEnterScorePage from "../pages/user/UserEnterScorePage";
 import UserMyScorePage from "../pages/user/UserMyScorePage";
 import UserProfilePage from "../pages/user/UserProfilePage";
 import AppPage from "../pages/AppPage";
+import Login from "../features/public/components/Login";
 
 // Router Configuration
 const router = createBrowserRouter([

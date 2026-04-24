@@ -10,7 +10,6 @@ const FormInput = ({
   type,
   error,
 }) => {
-  console.log(error);
   return (
     <div className={styles.formGroup}>
       <label className={styles.formLabel}>{label}:</label>

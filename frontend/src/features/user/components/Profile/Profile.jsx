@@ -3,7 +3,7 @@ import styles from "./Profile.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
 
-import Loader from "../../../public/shared/Loader";
+import Loader from "../../../shared/Loader";
 import InputField from "../../shared/InputField";
 import UserForm from "./UserForm";
 import ProfileForm from "./ProfileForm";
