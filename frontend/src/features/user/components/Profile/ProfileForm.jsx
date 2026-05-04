@@ -65,7 +65,6 @@ const ProfileForm = ({
           experienceLevel: profile.experience,
           bio: profile.bio,
         });
-        console.log(res);
         if (res.data.status === "success")
           toast.success("Profile created successfull");
       } else {

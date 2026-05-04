@@ -18,7 +18,6 @@ const EnterScore = () => {
     resetForm,
     handleFormCancle,
   } = useScoreFormHandler(handleRequest);
-  console.log(user);
 
   async function handleRequest(formData) {
     const requestData = {

@@ -44,7 +44,6 @@ const UserForm = function ({
       if (user.phone === "") throw new Error("Please enter your phone");
 
       const res = await updateUserAPI(savedUser?.publicId, user);
-      console.log(res);
       if (res.data.status === "success") {
         toast.success("User edited successfull");
         onSuccess();

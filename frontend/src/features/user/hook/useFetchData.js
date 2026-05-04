@@ -5,14 +5,13 @@ const useFetchData = function (fetchAPI, dependencies) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log("fetching profile data");
     async function handleFetchRequest() {
       try {
         setLoading(true);
         const response = await fetchAPI();
         setData(response.data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       } finally {
         setLoading(false);
       }

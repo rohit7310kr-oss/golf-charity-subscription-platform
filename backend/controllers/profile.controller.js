@@ -4,7 +4,6 @@ const User = require("../models/user.model");
 const { getIdFromPublicId } = require("../utils/getIdFromPublicId");
 
 exports.createProfile = catchAsyncHandler(async function (req, res) {
-  console.log(req.user);
   const userId = await getIdFromPublicId(User, req.body.user);
 
   req.body.user = userId;
