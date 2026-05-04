@@ -35,7 +35,7 @@ const useLoginFormHandler = function () {
       localStorage.setItem("token", user.data.token);
       localStorage.setItem("user", JSON.stringify(user.data.data));
 
-      navigate("app/user");
+      navigate("/app/user");
     } catch (err) {
       setError(err.response.data.message);
     } finally {

@@ -18,6 +18,7 @@ const EnterScore = () => {
     resetForm,
     handleFormCancle,
   } = useScoreFormHandler(handleRequest);
+  console.log(user);
 
   async function handleRequest(formData) {
     const requestData = {
@@ -28,6 +29,7 @@ const EnterScore = () => {
       weather: formData.weather,
       totalScore: calculateTotal(),
     };
+    console.log(requestData);
     const response = await createScoreAPI(requestData);
 
     if (response.data.status === "success") {

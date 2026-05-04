@@ -14,6 +14,7 @@ import UserMyScorePage from "../pages/user/UserMyScorePage";
 import UserProfilePage from "../pages/user/UserProfilePage";
 import AppPage from "../pages/AppPage";
 import Login from "../features/public/components/Login";
+import Form from "../features/public/components/Form";
 
 // Router Configuration
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
   },
+  { path: "/login", element: <Form /> },
   {
     path: "/app",
     element: <AppPage />,

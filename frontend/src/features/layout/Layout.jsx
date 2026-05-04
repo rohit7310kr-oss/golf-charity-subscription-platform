@@ -128,7 +128,7 @@ const Layout = ({
                     <span className={styles.userMenuName}>
                       {user?.fullName}
                     </span>
-                    <span className={styles.userMenuArrow}>▼</span>
+                    {/* <span className={styles.userMenuArrow}>▼</span> */}
                   </button>
                 </div>
                 <button

@@ -13,7 +13,6 @@ const Home = function () {
         <CharityList />
         <Plans />
         {/* {isLogin ? <Login /> : <Registration />} */}
-        <Form />
       </main>
     </div>
   );

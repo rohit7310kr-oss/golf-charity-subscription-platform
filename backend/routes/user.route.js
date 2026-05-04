@@ -5,10 +5,14 @@ const {
   updateUser,
   getUser,
 } = require("../controllers/user.controller");
+const authMiddleware = require("../middleware/authMiddleware");
+const allowRoles = require("../middleware/allowRoles");
 
 const router = express.Router();
 
 router.route("/").get(getAllUser);
+router.route("/:id").get(getUser);
+router.use(authMiddleware, allowRoles("user"));
 
 router.route("/:id").get(getUser).patch(updateUser);
 

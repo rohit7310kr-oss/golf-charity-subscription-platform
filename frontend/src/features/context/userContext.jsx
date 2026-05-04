@@ -17,9 +17,8 @@ export const UserProvider = function ({ children }) {
       const responseProfile = await fetchProfileAPI(
         responseUser.data.data.publicId,
       );
-      if (!responseProfile.data) setProfile(null);
-
-      setProfile(responseProfile.data.data);
+      if (!responseProfile.data) return setProfile(null);
+      else setProfile(responseProfile.data.data);
     } catch (err) {
       console.dir(err);
     } finally {
