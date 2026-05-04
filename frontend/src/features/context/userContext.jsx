@@ -1,5 +1,9 @@
 import { React, createContext, useContext, useEffect, useState } from "react";
-import { fetchProfileAPI, getUserAPI } from "../user/services/userAPI";
+import {
+  fetchProfileAPI,
+  getMeAPI,
+  logoutUserAPI,
+} from "../user/services/userAPI";
 
 const userContext = createContext();
 
@@ -11,12 +15,12 @@ export const UserProvider = function ({ children }) {
   const handleGetUserRequest = async function () {
     try {
       setLoading(true);
-      const savedUser = await JSON.parse(localStorage.getItem("user"));
-      const responseUser = await getUserAPI(savedUser.publicId);
-      if (responseUser) setUser(responseUser.data.data);
-      const responseProfile = await fetchProfileAPI(
-        responseUser.data.data.publicId,
-      );
+
+      const userRes = await getMeAPI();
+      if (userRes.data.data) setUser(userRes.data.data);
+
+      const responseProfile = await fetchProfileAPI(userRes.data.data.publicId);
+
       if (!responseProfile.data) return setProfile(null);
       else setProfile(responseProfile.data.data);
     } catch (err) {
@@ -26,12 +30,23 @@ export const UserProvider = function ({ children }) {
     }
   };
 
+  const handleLogout = async function () {
+    try {
+      await logoutUserAPI();
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    } catch (err) {
+      console.dir(err);
+    }
+  };
+
   useEffect(() => {
     handleGetUserRequest();
   }, []);
 
   return (
-    <userContext.Provider value={{ profile, user, loading }}>
+    <userContext.Provider value={{ handleLogout, profile, user, loading }}>
       {children}
     </userContext.Provider>
   );

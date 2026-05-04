@@ -9,10 +9,9 @@ const allowRoles = require("../middleware/allowRoles");
 
 const router = express.Router();
 
-router.route("/:id").get(getProfile);
-
 router.use(authMiddleware, allowRoles("user"));
 
+router.route("/:id").get(getProfile);
 router.route("/:id").patch(updateProfile);
 router.route("/").post(createProfile);
 

@@ -10,9 +10,9 @@ const allowRoles = require("../middleware/allowRoles");
 
 const router = express.Router();
 
+router.use(authMiddleware, allowRoles("user"));
 router.route("/").get(getAllUser);
 router.route("/:id").get(getUser);
-router.use(authMiddleware, allowRoles("user"));
 
 router.route("/:id").get(getUser).patch(updateUser);
 

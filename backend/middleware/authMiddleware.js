@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
+const client = require("../config/redis");
 
-const authMiddleware = function (req, res, next) {
+const authMiddleware = async function (req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader)
@@ -12,9 +13,17 @@ const authMiddleware = function (req, res, next) {
 
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
+    // Check blacklist
+    const isBlacklisted = await client.get(`blacklist:${token}`);
+    if (isBlacklisted)
+      return res.status(401).json({ message: "Token invalidated" });
+
     req.user = decode;
     next();
   } catch (err) {
+    if (err.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Token expired" });
+    }
     res.status(401).json({ status: "fail", message: "access prohibited" });
   }
 };

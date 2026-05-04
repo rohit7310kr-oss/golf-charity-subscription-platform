@@ -34,7 +34,9 @@ const Layout = ({
     navigate("/");
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    config.handleLogout();
+  };
 
   return (
     <>

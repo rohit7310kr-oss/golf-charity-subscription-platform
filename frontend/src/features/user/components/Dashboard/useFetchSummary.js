@@ -23,6 +23,7 @@ const useFetchSummary = function () {
       setLoading(true);
       if (!user) throw new Error("Please login");
       const response = await fetchSummeryAPI(user?.publicId);
+
       const data = response.data.data;
 
       setStats({
