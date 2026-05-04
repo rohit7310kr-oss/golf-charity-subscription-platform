@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Plans.module.css";
+import { Link } from "react-router-dom";
 
 const Plans = () => {
   // Placeholder data
@@ -37,7 +38,9 @@ const Plans = () => {
                 <li key={index}>{feature}</li>
               ))}
             </ul>
-            <button className={styles.chooseButton}>Choose Plan</button>
+            <Link to="login" className={styles.chooseButton}>
+              Choose Plan
+            </Link>
           </div>
         ))}
       </div>

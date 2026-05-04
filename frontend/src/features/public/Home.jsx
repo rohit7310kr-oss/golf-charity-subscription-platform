@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Plans from "./components/Plans";
 import Registration from "./components/Registration";
 import Form from "./components/Form";
+import { Link } from "react-router-dom";
 
 const Home = function () {
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CharityList.module.css";
+import { Link } from "react-router-dom";
 
 const CharityList = () => {
   // Placeholder data
@@ -17,7 +18,9 @@ const CharityList = () => {
           <div key={charity.id} className={styles.charityCard}>
             <h3>{charity.name}</h3>
             <p>{charity.description}</p>
-            <button className={styles.selectButton}>Select</button>
+            <Link to="login" className={styles.selectButton}>
+              Select
+            </Link>
           </div>
         ))}
       </div>
