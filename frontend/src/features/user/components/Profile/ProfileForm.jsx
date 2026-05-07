@@ -45,19 +45,17 @@ const ProfileForm = ({
 
   const handleProfileEditSave = async () => {
     try {
-      if (profile.handicap === "")
+      if (profile.handicap === "" || !profile.handicap)
         throw new Error("Please enter handicap value");
 
-      if (profile.homeCourse === "")
+      if (profile.homeCourse === "" || !profile.homeCourse)
         throw new Error("please enter your home course");
 
-      if (profile.experience === "")
-        throw new Error("please select your exeprience");
-
-      if (profile.bio === "")
-        throw new Error("please write about yourself in bio!");
+      if (profile.experience === "" || !profile.experience)
+        throw new Error("please selsect your exeprience");
 
       if (profileFormMode === "create") {
+        console.log(profile);
         const res = await createProfileAPI({
           handicap: profile.handicap,
           user: userPublicId,

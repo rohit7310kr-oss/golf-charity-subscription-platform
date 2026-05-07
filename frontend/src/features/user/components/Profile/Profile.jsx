@@ -70,14 +70,13 @@ const Profile = () => {
         </div>
 
         <div className={styles.profileForm}>
-          {profileFormMode === "edit" && (
-            <UserForm
-              setUserEditing={setUserEditing}
-              userEditing={userEditing}
-              savedUser={savedUser}
-              onSuccess={onSuccessUserForm}
-            />
-          )}
+          <UserForm
+            setUserEditing={setUserEditing}
+            userEditing={userEditing}
+            savedUser={savedUser}
+            onSuccess={onSuccessUserForm}
+          />
+
           <ProfileForm
             profileFormMode={profileFormMode}
             setProfileEditing={setProfileEditing}

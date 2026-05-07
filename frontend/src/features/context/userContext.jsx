@@ -11,6 +11,7 @@ export const UserProvider = function ({ children }) {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingLogout, setLoadingLogout] = useState(false);
 
   const handleGetUserRequest = async function () {
     try {
@@ -32,12 +33,15 @@ export const UserProvider = function ({ children }) {
 
   const handleLogout = async function () {
     try {
+      setLoadingLogout(true);
       await logoutUserAPI();
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       window.location.href = "/login";
     } catch (err) {
       console.dir(err);
+    } finally {
+      setLoadingLogout(false);
     }
   };
 
@@ -46,7 +50,9 @@ export const UserProvider = function ({ children }) {
   }, []);
 
   return (
-    <userContext.Provider value={{ handleLogout, profile, user, loading }}>
+    <userContext.Provider
+      value={{ loadingLogout, handleLogout, profile, user, loading }}
+    >
       {children}
     </userContext.Provider>
   );

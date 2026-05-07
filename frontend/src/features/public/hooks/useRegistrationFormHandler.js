@@ -62,6 +62,12 @@ const useFormHandler = function (onSuccess) {
           };
         });
 
+      if (formData.phone.length !== 10) {
+        return setFieldErrors((err) => {
+          return { ...err, phone: "Phone number must be of 10 digit only" };
+        });
+      }
+
       if (formData.fullName.length < 2)
         return setFieldErrors((errors) => {
           return { ...errors, fullName: "Please write correct name" };
