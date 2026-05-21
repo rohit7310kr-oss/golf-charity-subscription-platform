@@ -26,3 +26,8 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
+
+.secondaryButton:disabled {
+  background: gray;
+  box-shadow: 0;
+}

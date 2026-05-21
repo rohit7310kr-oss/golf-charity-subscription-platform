@@ -2,7 +2,12 @@ import React from "react";
 
 import styles from "./SecondaryButton.module.css";
 
-const SecondaryButton = ({ variant = "", onClick, children }) => {
+const SecondaryButton = ({
+  variant = "",
+  onClick,
+  disabled = false,
+  children,
+}) => {
   const style =
     variant === "simple"
       ? {
@@ -23,6 +28,7 @@ const SecondaryButton = ({ variant = "", onClick, children }) => {
       type="button"
       style={style}
       onClick={onClick}
+      disabled={disabled}
       className={styles.secondaryButton}
     >
       {children}

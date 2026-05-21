@@ -9,6 +9,8 @@ const useScoreFormHandler = function (handleRequest) {
     weather: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   function resetForm() {
     setFormData({
       courseName: "",

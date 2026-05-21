@@ -16,6 +16,8 @@ const UserForm = function ({
     email: "",
     phone: "",
   });
+  const [loading, setLoading] = useState(false);
+
   const handleUserInputChange = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({
@@ -39,6 +41,7 @@ const UserForm = function ({
 
   const handleUserEditRequest = async function () {
     try {
+      setLoading(true);
       if (user.fullName === "") throw new Error("Please enter your full name");
       if (user.email === "") throw new Error("Please enter your email");
       if (user.phone === "") throw new Error("Please enter your phone");
@@ -50,6 +53,8 @@ const UserForm = function ({
       }
     } catch (err) {
       toast.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,7 +71,7 @@ const UserForm = function ({
           htmlId="fullName"
           name="fullName"
           onChange={handleUserInputChange}
-          disabled={!userEditing}
+          disabled={!userEditing || loading}
           value={user.fullName}
           label="Full name"
           type="text"
@@ -75,7 +80,7 @@ const UserForm = function ({
           htmlId="email"
           name="email"
           onChange={handleUserInputChange}
-          disabled={!userEditing}
+          disabled={!userEditing || loading}
           value={user.email}
           type="email"
           label="Email"
@@ -84,7 +89,7 @@ const UserForm = function ({
           htmlId="phone"
           name="phone"
           onChange={handleUserInputChange}
-          disabled={!userEditing}
+          disabled={!userEditing || loading}
           value={user.phone}
           type="tel"
           label="phone"
@@ -93,6 +98,7 @@ const UserForm = function ({
 
       {userEditing && (
         <ActionButtons
+          loading={loading}
           onClickCancle={handleUserEditCancle}
           onClickSave={handleUserEditSave}
         />

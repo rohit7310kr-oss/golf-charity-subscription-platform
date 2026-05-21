@@ -20,6 +20,7 @@ const ProfileForm = ({
     experience: "",
     bio: "",
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setProfile({
@@ -45,6 +46,7 @@ const ProfileForm = ({
 
   const handleProfileEditSave = async () => {
     try {
+      setLoading(true);
       if (profile.handicap === "" || !profile.handicap)
         throw new Error("Please enter handicap value");
 
@@ -55,7 +57,6 @@ const ProfileForm = ({
         throw new Error("please selsect your exeprience");
 
       if (profileFormMode === "create") {
-        console.log(profile);
         const res = await createProfileAPI({
           handicap: profile.handicap,
           user: userPublicId,
@@ -74,8 +75,8 @@ const ProfileForm = ({
     } catch (err) {
       toast.error(err.message);
     } finally {
+      setLoading(false);
     }
-    console.log("profile edit save");
   };
 
   return (
@@ -91,7 +92,7 @@ const ProfileForm = ({
             htmlId="handicap"
             name="handicap"
             onChange={handleProfileInputChange}
-            disabled={!profileEditing}
+            disabled={!profileEditing || loading}
             value={profile.handicap}
             type="number"
             label="Handicap"
@@ -101,7 +102,7 @@ const ProfileForm = ({
             htmlId="homeCourse"
             name="homeCourse"
             onChange={handleProfileInputChange}
-            disabled={!profileEditing}
+            disabled={!profileEditing || loading}
             value={profile.homeCourse}
             type="text"
             label="Home course"
@@ -111,7 +112,7 @@ const ProfileForm = ({
             htmlId="experience"
             name="experience"
             onChange={handleProfileInputChange}
-            disabled={!profileEditing}
+            disabled={!profileEditing || loading}
             value={profile.experience}
             type="select"
             label="Experience level"
@@ -125,7 +126,7 @@ const ProfileForm = ({
           name="bio"
           value={profile.bio}
           onChange={handleProfileInputChange}
-          disabled={!profileEditing}
+          disabled={!profileEditing || loading}
           rows="4"
           placeholder="Tell us about yourself..."
         />
@@ -133,6 +134,7 @@ const ProfileForm = ({
 
       {profileEditing && (
         <ActionButtons
+          loading={loading}
           onClickCancle={handleProfileEditCancle}
           onClickSave={handleProfileEditSave}
         />

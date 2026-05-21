@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./EnterScore.module.css";
 import UserHeaderSection from "../../shared/UserHeaderSection";
 import SecondaryButton from "../../shared/SecondaryButtton";
@@ -9,6 +9,8 @@ import { useUser } from "../../../context/userContext";
 
 const EnterScore = () => {
   const { user } = useUser();
+  const [loading, setLoading] = useState(false);
+
   const {
     formData,
     handleInputChange,
@@ -20,20 +22,26 @@ const EnterScore = () => {
   } = useScoreFormHandler(handleRequest);
 
   async function handleRequest(formData) {
-    const requestData = {
-      user: user.publicId,
-      courseName: formData.courseName,
-      date: formData.date,
-      notes: formData.notes,
-      weather: formData.weather,
-      totalScore: calculateTotal(),
-    };
-    console.log(requestData);
-    const response = await createScoreAPI(requestData);
+    try {
+      setLoading(true);
 
-    if (response.data.status === "success") {
-      resetForm();
-      toast.success("Score is successfully registered");
+      const requestData = {
+        user: user.publicId,
+        courseName: formData.courseName,
+        date: formData.date,
+        notes: formData.notes,
+        weather: formData.weather,
+        totalScore: calculateTotal(),
+      };
+      const response = await createScoreAPI(requestData);
+
+      if (response.data.status === "success") {
+        resetForm();
+        toast.success("Score is successfully registered");
+      }
+    } catch (err) {
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -51,6 +59,7 @@ const EnterScore = () => {
             <div className={styles.formGroup}>
               <label htmlFor="courseName">Course Name</label>
               <input
+                disabled={loading}
                 type="text"
                 id="courseName"
                 name="courseName"
@@ -63,6 +72,7 @@ const EnterScore = () => {
             <div className={styles.formGroup}>
               <label htmlFor="weather">weather</label>
               <input
+                disabled={loading}
                 type="text"
                 id="weather"
                 name="weather"
@@ -75,6 +85,7 @@ const EnterScore = () => {
             <div className={styles.formGroup}>
               <label htmlFor="date">Date</label>
               <input
+                disabled={loading}
                 type="date"
                 id="date"
                 name="date"
@@ -93,6 +104,7 @@ const EnterScore = () => {
               <div key={index} className={styles.scoreInput}>
                 <label>Hole {index + 1}</label>
                 <input
+                  disabled={loading}
                   type="number"
                   min="1"
                   max="12"
@@ -111,6 +123,7 @@ const EnterScore = () => {
         <div className={styles.formSection}>
           <h3>Additional Notes</h3>
           <textarea
+            disabled={loading}
             name="notes"
             value={formData.notes}
             onChange={handleInputChange}
@@ -123,7 +136,9 @@ const EnterScore = () => {
           <SecondaryButton variant="simple" onClick={handleFormCancle}>
             Cancle
           </SecondaryButton>
-          <SecondaryButton onClick={handleSubmit}>Submit Score</SecondaryButton>
+          <SecondaryButton disabled={loading} onClick={handleSubmit}>
+            {loading ? "Wait..." : "Submit Score"}
+          </SecondaryButton>
         </div>
       </form>
     </div>
